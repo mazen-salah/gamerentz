@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 
+const primaryColor = Colors.deepPurple;
+
 ThemeData lightTheme = ThemeData(
-brightness: Brightness.light,
+  useMaterial3: true,
+  brightness: Brightness.light,
+  primarySwatch: primaryColor,
 );
 
 ThemeData darkTheme = ThemeData(
-brightness: Brightness.dark,
+  useMaterial3: true,
+  primarySwatch: primaryColor,
+  brightness: Brightness.dark,
 );
