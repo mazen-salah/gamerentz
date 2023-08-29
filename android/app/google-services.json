@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "754655877030",
+    "project_id": "gamerentz",
+    "storage_bucket": "gamerentz.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:754655877030:android:8b71465de03f4681596167",
+        "android_client_info": {
+          "package_name": "com.SummutionWorks.GameRentz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "754655877030-lk39pkgid861co9dus67do21l3lni1ss.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA0GNAc_PLw_5b_D5LJniREiaZtBwfAILY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "754655877030-lk39pkgid861co9dus67do21l3lni1ss.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "754655877030-eeuvogr352o10e8tuvscg8j48uu23gu8.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.gamerentz"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

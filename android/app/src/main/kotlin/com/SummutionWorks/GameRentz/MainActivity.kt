@@ -1,4 +1,4 @@
-package com.example.gamerentz
+package com.SummutionWorks.GameRentz
 
 import io.flutter.embedding.android.FlutterActivity
 
