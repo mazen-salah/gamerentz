@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 import 'package:gamerentz/theme/theme_constants.dart';
 import 'package:gamerentz/theme/theme_manager.dart';
 import 'package:gamerentz/views/buyers/main_screen.dart';
 
-void main() {
+Future<void> main() async {
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
-
-ThemeManager themeManager = ThemeManager();
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
