@@ -8,3 +8,11 @@ class ThemeManager with ChangeNotifier {
     notifyListeners();
   }
 }
+
+ThemeManager themeManager = ThemeManager();
+
+void toggleTheme(){
+themeManager.toggleTheme(
+              themeManager.themeMode == ThemeMode.dark ? false : true,
+            );
+}
