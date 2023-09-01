@@ -1,5 +1,5 @@
 name: gamerentz
-description: A new Flutter project.
+description: Welcome to Gamerentz - Your ultimate destination for all things gaming! Rent, buy, or trade video games for PlayStation, Xbox, Nintendo Switch, and PC. Join our vibrant gaming community, discover the latest titles, read reviews, and stay updated on gaming news.
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -36,7 +36,9 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   firebase_core: ^2.15.1
-
+  google_nav_bar: ^5.0.6
+  provider: ^6.0.5
+  shared_preferences: ^2.2.1
 dev_dependencies:
   flutter_test:
     sdk: flutter
