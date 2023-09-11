@@ -18,7 +18,7 @@ class ImageHandeler extends StatelessWidget {
       borderRadius: BorderRadius.circular(10),
       child: CachedNetworkImage(
         imageUrl: image,
-        fit: BoxFit.fitHeight,
+        fit: BoxFit.cover,
         progressIndicatorBuilder: (context, url, downloadProgress) => Shimmer(
           duration: const Duration(seconds: 10),
           interval: const Duration(seconds: 10),

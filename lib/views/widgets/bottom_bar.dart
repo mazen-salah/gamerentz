@@ -15,6 +15,7 @@ class BottomBar extends StatelessWidget {
     return GNav(
       gap: 8,
       color: primaryColor,
+      selectedIndex: MainScreen.index,
       activeColor: Colors.white,
       tabBackgroundColor: primaryColor,
       padding: const EdgeInsets.all(8),

@@ -1,56 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <base href="$FLUTTER_BASE_HREF">
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  
-  <!-- SEO Meta Tags -->
-  <meta name="description" content="Welcome to Gamerentz - Your ultimate destination for all things gaming! Rent, buy, or trade video games for PlayStation, Xbox, Nintendo Switch, and PC. Join our vibrant gaming community, discover the latest titles, read reviews, and stay updated on gaming news.">
-  <meta name="keywords" content="Gamerentz, game rentals, buy games, sell games, video game marketplace, gaming console rentals, PC games, PlayStation, PS, PSN, PS4, PS5, Xbox, Xbox One, Xbox Series X, Nintendo Switch, gaming community, game trading, multiplayer games, single-player games, online gaming, retro games, gaming store, gaming discounts, game bundles, gaming accessories, gaming news, game reviews, gaming forums, esports tournaments, gaming events, gaming tips, gaming guides, cross-platform gaming, indie games, AAA titles, gaming merchandise, digital game downloads, gaming memberships, gaming rewards, game streaming, gaming influencers, game of the year, gaming competition, gaming achievements, gaming culture, game recommendations, gaming nostalgia, gaming blogs, gaming updates, gaming deals, gaming rewards program, gaming loyalty program">
-  
-  <!-- iOS Meta Tags & Icons -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="Gamerentz">
-  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
-  
-  <!-- Open Graph Tags for Facebook -->
-  <meta property="og:title" content="Gamerentz - Your Ultimate Video Game Marketplace">
-  <meta property="og:description" content="Discover a world of gaming on Gamerentz - Rent, buy, or trade video games for all consoles and PC. Join our gaming community for reviews, news, and more.">
-  <meta property="og:image" content="https://i.ibb.co/YkmJhTP/gamerentz.jpg">
-  <meta property="og:url" content="https://gamerentz.web.app/">
-  <meta property="og:type" content="website">
-  
-  <!-- Favicon -->
-  <link rel="icon" href="icons/favicon.ico" sizes="any">
-  
-  <title>Gamerentz - Your Ultimate Gaming Destination</title>
-  <link rel="manifest" href="manifest.json">
-  
-  <script>
-    // The value below is injected by flutter build, do not touch.
-    var serviceWorkerVersion = null;
-  </script>
-  
-  <!-- Flutter Initialization Script -->
-  <script src="flutter.js" defer></script>
-</head>
-<body>
-  <script>
-    window.addEventListener('load', function(ev) {
-      // Download main.dart.js
-      _flutter.loader.loadEntrypoint({
-        serviceWorker: {
-          serviceWorkerVersion: serviceWorkerVersion,
-        },
-        onEntrypointLoaded: function(engineInitializer) {
-          engineInitializer.initializeEngine().then(function(appRunner) {
-            appRunner.runApp();
-          });
-        }
+  <head>
+    <base href="$FLUTTER_BASE_HREF" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <meta
+      name="description"
+      content="Welcome to Gamerentz - Your ultimate destination for all things gaming! Rent, buy, or trade video games for PlayStation, Xbox, Nintendo Switch, and PC. Join our vibrant gaming community, discover the latest titles, read reviews, and stay updated on gaming news."
+    />
+    <meta
+      name="keywords"
+      content="Gamerentz, game rentals, buy games, sell games, video game marketplace, gaming console rentals, PC games, PlayStation, PS, PSN, PS4, PS5, Xbox, Xbox One, Xbox Series X, Nintendo Switch, gaming community, game trading, multiplayer games, single-player games, online gaming, retro games, gaming store, gaming discounts, game bundles, gaming accessories, gaming news, game reviews, gaming forums, esports tournaments, gaming events, gaming tips, gaming guides, cross-platform gaming, indie games, AAA titles, gaming merchandise, digital game downloads, gaming memberships, gaming rewards, game streaming, gaming influencers, game of the year, gaming competition, gaming achievements, gaming culture, game recommendations, gaming nostalgia, gaming blogs, gaming updates, gaming deals, gaming rewards program, gaming loyalty program"
+    />
+
+    <!-- iOS Meta Tags & Icons -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="apple-mobile-web-app-title" content="Gamerentz" />
+    <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
+
+    <meta
+      property="og:title"
+      content="Gamerentz - Your Ultimate Video Game Marketplace"
+    />
+    <meta
+      property="og:description"
+      content="Discover a world of gaming on Gamerentz - Rent, buy, or trade video games for all consoles and PC. Join our gaming community for reviews, news, and more."
+    />
+    <meta
+      property="og:image"
+      content="https://i.ibb.co/YkmJhTP/gamerentz.jpg"
+    />
+    <meta property="og:url" content="https://gamerentz.web.app/" />
+    <meta property="og:type" content="website" />
+
+    <link rel="icon" href="icons/favicon.ico" sizes="any" />
+
+    <title>Gamerentz - Your Ultimate Gaming Destination</title>
+    <link rel="manifest" href="manifest.json" />
+
+    <script>
+      var serviceWorkerVersion = null;
+    </script>
+
+    <script src="flutter.js" defer></script>
+  </head>
+  <body>
+    <script>
+      window.flutterWebRenderer = "html";
+    </script>
+    <script>
+      window.addEventListener("load", function (ev) {
+        _flutter.loader.loadEntrypoint({
+          serviceWorker: {
+            serviceWorkerVersion: serviceWorkerVersion,
+          },
+          onEntrypointLoaded: function (engineInitializer) {
+            engineInitializer.initializeEngine().then(function (appRunner) {
+              appRunner.runApp();
+            });
+          },
+        });
       });
-    });
-  </script>
-</body>
+    </script>
+  </body>
 </html>

@@ -3,7 +3,12 @@ import 'package:flutter/widgets.dart';
 import 'package:gamerentz/models/cart_model.dart';
 
 class CartProvider with ChangeNotifier {
-  Map<String, CartAttr> _cartItems = {}; 
+  Map<String, CartAttr> _cartItems = {};
+
+  set setCartItem(Map<String, CartAttr> cartItems) {
+    _cartItems = cartItems;
+    notifyListeners();
+  }
 
   Map<String, CartAttr> get getCartItem {
     return _cartItems;
@@ -46,17 +51,18 @@ class CartProvider with ChangeNotifier {
       notifyListeners();
     } else {
       _cartItems.putIfAbsent(
-          productId,
-          () => CartAttr(
-              productName: productName,
-              productId: productId,
-              imageUrl: imageUrl,
-              quantity: quantity,
-              productQuantity: productQuantity,
-              price: price,
-              vendorId: vendorId,
-              productSize: productSize,
-              scheduleDate: scheduleDate));
+        productId,
+        () => CartAttr(
+            productName: productName,
+            productId: productId,
+            imageUrl: imageUrl,
+            quantity: quantity,
+            productQuantity: productQuantity,
+            price: price,
+            vendorId: vendorId,
+            productSize: productSize,
+            scheduleDate: scheduleDate),
+      );
 
       notifyListeners();
     }
