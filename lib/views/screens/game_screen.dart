@@ -266,24 +266,22 @@ void _showScreenshotGallery(
               height: MediaQuery.of(context).size.width * 9 / 16,
               child: Stack(
                 children: [
-                  Expanded(
-                    child: PageView.builder(
-                      itemCount: screenshots.length,
-                      itemBuilder: (context, index) {
-                        return GestureDetector(
-                          onTap: () {
-                            Navigator.of(context).pop();
-                          },
-                          child: ImageHandler(image: screenshots[index]),
-                        );
-                      },
-                      controller: pageController,
-                      onPageChanged: (index) {
-                        setState(() {
-                          currentIndex = index;
-                        });
-                      },
-                    ),
+                  PageView.builder(
+                    itemCount: screenshots.length,
+                    itemBuilder: (context, index) {
+                      return GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: ImageHandler(image: screenshots[index]),
+                      );
+                    },
+                    controller: pageController,
+                    onPageChanged: (index) {
+                      setState(() {
+                        currentIndex = index;
+                      });
+                    },
                   ),
                   if (currentIndex < screenshots.length - 1)
                     Positioned(
