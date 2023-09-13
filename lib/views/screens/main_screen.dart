@@ -5,16 +5,14 @@ import '../widgets/bottom_bar.dart';
 import 'my_main_screens.dart';
 
 class MainScreen extends StatefulWidget {
-   const MainScreen({Key? key}) : super(key: key);
+  const MainScreen({Key? key}) : super(key: key);
   static int index = 0;
 
-  
   @override
   State<MainScreen> createState() => _MainScreenState();
 }
 
 class _MainScreenState extends State<MainScreen> {
- 
   void _updateIndex(int value) {
     setState(() {
       MainScreen.index = value;
