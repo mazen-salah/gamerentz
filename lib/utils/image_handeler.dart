@@ -4,10 +4,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer_animation/shimmer_animation.dart';
 
-class ImageHandeler extends StatelessWidget {
+class ImageHandler extends StatelessWidget {
   final String image;
 
-  const ImageHandeler({
+  const ImageHandler({
     super.key,
     required this.image,
   });
