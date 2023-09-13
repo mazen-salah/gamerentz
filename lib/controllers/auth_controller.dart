@@ -36,7 +36,7 @@ class AuthController {
     }
   }
 
-  Future<String> signUpUSers(String email, String fullName, String phoneNumber,
+  Future<String> signUpUser(String email, String fullName, String phoneNumber,
       String password, Uint8List? image) async {
     String res = 'Some error occured';
 
@@ -52,15 +52,10 @@ class AuthController {
             email: email, password: password);
 
         String profileImageUrl = await _uploadProfileImageToStorage(image);
-
-        await _firestore.collection('buyers').doc(cred.user!.uid).set({
-          'email': email,
-          'fullName': fullName,
-          'phoneNumber': phoneNumber,
-          'buyerId': cred.user!.uid,
-          'address': '',
-          'profileImage': profileImageUrl,
-        });
+        cred.user!.updateDisplayName(fullName);
+        cred.user!.updatePhotoURL(profileImageUrl);
+        await initializeData(
+            cred, fullName, email, phoneNumber, profileImageUrl);
 
         res = 'success';
       } else {
@@ -75,6 +70,20 @@ class AuthController {
     }
 
     return res;
+  }
+
+  initializeData(UserCredential cred, String fullName, String email,
+      String phoneNumber, String profileImageUrl) async {
+    await _firestore.collection('users').doc(cred.user!.uid).set({
+      'id': cred.user!.uid,
+      'fullName': fullName,
+      'email': email,
+      'phoneNumber': phoneNumber,
+      'isVerified': false,
+      'favourites': [],
+      'wallet': 0,
+      'profileImage': profileImageUrl,
+    });
   }
 
   loginUsers(String email, String password) async {
