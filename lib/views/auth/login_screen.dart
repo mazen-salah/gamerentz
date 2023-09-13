@@ -1,177 +1,170 @@
 import 'package:flutter/material.dart';
 import 'package:gamerentz/controllers/auth_controller.dart';
+import 'package:gamerentz/utils/helper_widgets.dart';
 import 'package:gamerentz/utils/show_snackBar.dart';
 import 'package:gamerentz/views/auth/register_screen.dart';
 import 'package:gamerentz/views/screens/main_screen.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
-
-  @override
-  State<LoginScreen> createState() => _LoginScreenState();
-}
-
-class _LoginScreenState extends State<LoginScreen> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final AuthController _authController = AuthController();
-  late String email;
-
-  late String password;
-
-  bool _isLoading = false;
-
-  _loginUsers() async {
-    setState(() {
-      _isLoading = true;
-    });
-    if (_formKey.currentState!.validate()) {
-      String res = await _authController.loginUsers(email, password);
-
-      if (res == 'success') {
-        setState(() {
-          _isLoading = false;
-        });
-
-        if (!mounted) return null;
-
-        return Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-                builder: (BuildContext context) => const MainScreen()));
-      } else {
-        setState(() {
-          _isLoading = false;
-        });
-        if (!mounted) return null;
-        return showSnack(context, res);
-      }
-    } else {
-      setState(() {
-        _isLoading = false;
-      });
-      return showSnack(context, 'Please fields must not be empty');
-    }
-  }
+class LoginScreen extends StatelessWidget {
+  const LoginScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Form(
-          key: _formKey,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text(
-                'Login Customer"s Account',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
+
+      body: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: ListView(
+          physics: const BouncingScrollPhysics(),
+          children: [
+            Image.asset(
+              'assets/images/logo.png',
+              width: 300,
+            ),
+            verticalSpace(10),
+            const Text(
+              'Login',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
               ),
-              Padding(
-                padding: const EdgeInsets.all(13.0),
-                child: TextFormField(
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return 'Please Email feild most not be empty';
-                    } else {
-                      return null;
-                    }
+            ),
+            const SizedBox(height: 20),
+            const LoginForm(),
+            const SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text('Need an Account?'),
+                TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const BuyerRegisterScreen(),
+                      ),
+                    );
                   },
-                  onChanged: ((value) {
-                    email = value;
-                  }),
-                  decoration: const InputDecoration(
-                    labelText: ' Enter Email Address',
-                  ),
+                  child: const Text('Register'),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(13.0),
-                child: TextFormField(
-                  obscureText: true,
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return 'Please Password most not be empty';
-                    } else {
-                      return null;
-                    }
-                  },
-                  onChanged: (value) {
-                    password = value;
-                  },
-                  decoration: const InputDecoration(
-                    labelText: 'Enter Password',
-                  ),
-                ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              InkWell(
-                onTap: () {
-                  _loginUsers();
-                },
-                child: Container(
-                  width: MediaQuery.of(context).size.width - 40,
-                  height: 50,
-                  decoration:
-                      BoxDecoration(borderRadius: BorderRadius.circular(10)),
-                  child: Center(
-                    child: _isLoading
-                        ? const CircularProgressIndicator()
-                        : const Text(
-                            'Login',
-                            style: TextStyle(
-                              letterSpacing: 5,
-                            ),
-                          ),
-                  ),
-                ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text('Need An Account?'),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: ((context) {
-                        return const BuyerRegisterScreen();
-                      })));
-                    },
-                    child: const Text(
-                      'Register',
-                    ),
-                  ),
-                ],
-              )
-            ],
-          ),
+              ],
+            )
+          ],
         ),
       ),
     );
   }
 }
 
+class LoginForm extends StatefulWidget {
+  const LoginForm({super.key});
 
+  @override
+  State<LoginForm> createState() => _LoginFormState();
+}
 
+class _LoginFormState extends State<LoginForm> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final AuthController _authController = AuthController();
+  late String email;
+  late String password;
+  bool _isLoading = false;
 
-//  _loginUsers() async {
-//     setState(() {
-//       _isLoading = true;
-//     });
-//     if (_formKey.currentState!.validate()) {
-//       await _authController.loginUsers(email, password);
-//       return Navigator.pushReplacement(context,
-//           MaterialPageRoute(builder: (BuildContext context) {
-//         return MainScreen();
-//       }));
-//     } else {
-//       setState(() {
-//         _isLoading = false;
-//       });
-//       return showSnack(context, 'Please feidls most not be empty');
-//     }
-//   }
+  void _loginUser() async {
+    if (_formKey.currentState!.validate()) {
+      setState(() {
+        _isLoading = true;
+      });
+
+      final loginResult = await _authController.loginUsers(email, password);
+
+      setState(() {
+        _isLoading = false;
+      });
+
+      if (loginResult == 'success') {
+        if (!mounted) return;
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (BuildContext context) => const MainScreen(),
+          ),
+        );
+        
+      } else {
+        if (!mounted) return;
+        showSnack(context, loginResult);
+      }
+    } else {
+      showSnack(context, 'Please fill in all fields');
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Form(
+      key: _formKey,
+      child: Column(
+        children: [
+          TextFormField(
+            validator: (value) {
+              if (value!.isEmpty) {
+                return 'Please enter your email';
+              } else {
+                return null;
+              }
+            },
+            onChanged: (value) {
+              email = value;
+            },
+            decoration: const InputDecoration(
+              labelText: 'Enter Email Address',
+            ),
+          ),
+          const SizedBox(height: 20),
+          TextFormField(
+            obscureText: true,
+            validator: (value) {
+              if (value!.isEmpty) {
+                return 'Please enter your password';
+              } else {
+                return null;
+              }
+            },
+            onChanged: (value) {
+              password = value;
+            },
+            decoration: const InputDecoration(
+              labelText: 'Enter Password',
+            ),
+          ),
+          const SizedBox(height: 20),
+          InkWell(
+            onTap: () {
+              _loginUser();
+            },
+            child: Container(
+              width: double.infinity,
+              height: 50,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Theme.of(context).primaryColor,
+              ),
+              child: Center(
+                child: _isLoading
+                    ? const CircularProgressIndicator()
+                    : const Text(
+                        'Login',
+                        style: TextStyle(
+                          letterSpacing: 5,
+                          color: Colors.white,
+                        ),
+                      ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
