@@ -127,7 +127,7 @@ class _BannerWidgetState extends State<BannerWidget> {
                 controller: _pageController,
                 itemCount: _bannerImage.length,
                 itemBuilder: (context, index) {
-                  return ImageHandeler(image: _bannerImage[index]);
+                  return ImageHandler(image: _bannerImage[index]);
                 },
                 onPageChanged: _onPageChanged,
               ),
