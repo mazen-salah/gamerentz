@@ -13,9 +13,20 @@ class HomeScreen extends StatelessWidget {
       child: ListView(
         children: const [
           BannerWidget(),
-          HorizontalCategory(title: 'New Releases', itemCount: 8),
-          HorizontalCategory(title: 'Popular', itemCount: 2),
-          HorizontalCategory(title: 'Top Rated', itemCount: 5),
+          HorizontalCategory(
+            title: 'New Releases',
+            collectionName: 'games',
+            sortBy: 'n',
+          ),
+          HorizontalCategory(
+            title: 'Top Rated',
+            collectionName: 'games',
+            sortBy: 'r',
+          ),
+          HorizontalCategory(
+            title: 'Most Popular',
+            collectionName: 'games',
+          ),
         ],
       ),
     );
