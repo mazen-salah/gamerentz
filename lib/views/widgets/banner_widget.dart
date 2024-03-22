@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:gamerentz/theme/theme_constants.dart';
 import 'package:gamerentz/utils/helper_widgets.dart';
+import 'package:gamerentz/views/screens/main_screen.dart';
 
 import '../../utils/image_handeler.dart';
 
@@ -32,7 +33,6 @@ class _BannerWidgetState extends State<BannerWidget> {
   @override
   void dispose() {
     _autoScrollTimer?.cancel();
-
     super.dispose();
   }
 
@@ -51,33 +51,34 @@ class _BannerWidgetState extends State<BannerWidget> {
     const progressInterval = 100;
     const steps = (totalSeconds * 1000) ~/ progressInterval;
     var step = 0;
+    if (MainScreen.index == 0) {
+      _autoScrollTimer = Timer.periodic(
+        const Duration(milliseconds: progressInterval),
+        (progressTimer) {
+          setState(() {
+            _progress = (step + 1) / steps;
+          });
 
-    _autoScrollTimer = Timer.periodic(
-      const Duration(milliseconds: progressInterval),
-      (progressTimer) {
-        setState(() {
-          _progress = (step + 1) / steps;
-        });
+          step++;
+          
+          if (_progress == 1) {
+            step = 0;
+            if (_currentPage < _bannerImage.length - 1 &&
+                _bannerImage.length > 1) {
+              _currentPage++;
+            } else {
+              _currentPage = 0;
+            }
 
-        step++;
-
-        if (_progress == 1) {
-          step = 0;
-          if (_currentPage < _bannerImage.length - 1 &&
-              _bannerImage.length > 1) {
-            _currentPage++;
-          } else {
-            _currentPage = 0;
+            _pageController.animateToPage(
+              _currentPage,
+              duration: const Duration(milliseconds: 500),
+              curve: Curves.easeInOut,
+            );
           }
-
-          _pageController.animateToPage(
-            _currentPage,
-            duration: const Duration(milliseconds: 500),
-            curve: Curves.easeInOut,
-          );
-        }
-      },
-    );
+        },
+      );
+    }
   }
 
   void _onPageChanged(int page) {
